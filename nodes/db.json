@@ -1,0 +1,10 @@
+{
+   "mysql": {
+    "server_root_password": "manager",
+    "server_repl_password": "manager",
+    "server_debian_password": "manager"
+  },
+  "run_list": [
+    "role[db]"
+  ]
+}
