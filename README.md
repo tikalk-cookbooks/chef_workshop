@@ -1,5 +1,5 @@
-# Chef workshop
-<hr>
+![Tikal](http://www.tikalk.com/files/upload/1/tikal_com_logo45n45.png "Tikal Community") Chef workshop
+=============
 
 ## Quick start
 
@@ -12,7 +12,9 @@ I assume you have git
 4. Install [Vagrant][vagrant]
 5. ./boostrap.sh - this will install chef via omnibus, __please make sure__ this is what you want to use or do this manually !
 
-
+###Choose your route
+####Chef Server route see ./chef_server_route/README.md
+####Chef Solo route see ./chef_solo_route/README.md
 
 
 ## What lies here ?:
