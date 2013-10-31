@@ -1,4 +1,5 @@
 cookbooks
 tmp
 .DS_Store
+.vagrant
 

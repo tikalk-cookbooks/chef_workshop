@@ -2,23 +2,26 @@
 # vi: set ft=ruby :
 
 VAGRANTFILE_API_VERSION = "2"
-
+NAME = "chef-srv"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "canonical-ubuntu-12.04"
   config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-  config.vm.network :public_network
-  # config.vm.network "public_network", :bridge => 'en0: Wi-Fi (AirPort)'
+  #config.vm.network :public_network
+  #config.vm.network "public_network", :bridge => 'en0: Wi-Fi (AirPort)'
   # config.vm.network "public_network", :bridge => 'eth0'
-  config.vm.hostname = "chefsrv"
+  config.vm.network "private_network", ip: "192.168.56.101"
+  config.vm.hostname = "#{NAME}"
 
   config.vm.provider :virtualbox do |vb|
   #   # Don't boot with headless mode
   #   vb.gui = true
     vb.customize [ "modifyvm", :id, "--memory", "1024", "--cpus", "2"]
+    vb.name = "#{NAME}"
   end
 
   # Execute shell + pass arg to the shell script
-  config.vm.provision :shell, :path => File.expand_path("../bootstrap.sh", __FILE__), :args => "server"
+  #config.vm.provision :shell, :path => File.expand_path("../bootstrap.sh", __FILE__), :args => "server"
+  config.vm.provision :shell, :path => File.expand_path("../knife-config.sh", __FILE__)
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding

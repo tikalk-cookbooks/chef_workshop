@@ -1,0 +1,93 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+NAME = "chef-solo1"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "CentOS 6.4 x86_64"
+  config.vm.box_url = "http://shonky.info/centos64.box"
+  # config.vm.network "public_network", :bridge => 'en0: Wi-Fi (AirPort)'
+  # config.vm.network "public_network", :bridge => 'eth0'
+  # config.vm.network :public_network, :bridge => "en0: Wi-Fi (AirPort)" 
+  # config.vm.network :public_network
+  config.vm.network "private_network", ip: "192.168.56.201"
+  config.vm.hostname = "#{NAME}"
+
+  config.vm.provider :virtualbox do |vb|
+      # Don't boot with headless mode
+      # vb.gui = true
+    vb.customize [ "modifyvm", :id, "--memory", "512"]
+    vb.name = "#{NAME}"
+  end
+
+  config.vm.provider :aws do |aws, override|
+      aws.tags = {
+           'vagrant' => 'true',
+           'devenv' => 'true'
+         }
+
+      aws.access_key_id = ENV['AWS_ACCESS_KEY']           # Set the environment variable with your AWS_ACCESS_KEY
+      aws.secret_access_key = ENV['AWS_SECRET_KEY']       # Set the environment variable with your AWS_SECRET_KEY
+
+      # SEE :: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html
+      aws.keypair_name = "CREATE_A_KEY_PAIR"    
+
+      # Optional but vagrant can put the private key for the user below:
+      # override.ssh.private_key_path = 'aws-vagrant.pem' 
+
+      # It will use the keypair to connect then embed this in authoprized_keys for the user ...
+      # override.ssh.username = 'root'                    
+
+      aws.security_groups = [ "CREATE_A_SECURITY_GROUP_WITH_SSH_OPEN" ]
+
+      # SEE :: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html
+      aws.region = "us-west-2"
+
+      # SEE :: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html
+      aws.ami = "ami-7435ab44"
+      # aws.ami =   "ami-d8b429e8"
+  end
+
+
+  # exec shell with no args:
+  config.vm.provision :shell, :path => File.expand_path("../bootstrap.sh", __FILE__)
+
+  # Enable provisioning with chef solo, specifying a cookbooks path, roles
+  # path, and data_bags path (all relative to this Vagrantfile), and adding
+  # some recipes and/or roles.
+  #
+  # config.vm.provision :chef_solo do |chef|
+  #   chef.cookbooks_path = "../my-recipes/cookbooks"
+  #   chef.roles_path = "../my-recipes/roles"
+  #   chef.data_bags_path = "../my-recipes/data_bags"
+  #   chef.add_recipe "mysql"
+  #   chef.add_role "web"
+  #
+  #   # You may also specify custom JSON attributes:
+  #   chef.json = { :mysql_password => "foo" }
+  # end
+
+  # Enable provisioning with chef server, specifying the chef server URL,
+  # and the path to the validation key (relative to this Vagrantfile).
+  #
+  # The Opscode Platform uses HTTPS. Substitute your organization for
+  # ORGNAME in the URL and validation key.
+  #
+  # If you have your own Chef Server, use the appropriate URL, which may be
+  # HTTP instead of HTTPS depending on your configuration. Also change the
+  # validation key to validation.pem.
+  #
+  # config.vm.provision :chef_client do |chef|
+  #   chef.chef_server_url = "https://api.opscode.com/organizations/ORGNAME"
+  #   chef.validation_key_path = "ORGNAME-validator.pem"
+  # end
+  #
+  # If you're using the Opscode platform, your validator client is
+  # ORGNAME-validator, replacing ORGNAME with your organization name.
+  #
+  # If you have your own Chef Server, the default validation client name is
+  # chef-validator, unless you changed the configuration.
+  #
+  #   chef.validation_client_name = "ORGNAME-validator"
+end
