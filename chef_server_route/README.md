@@ -9,7 +9,7 @@
 
 
 | Directory | Purpose |
-|: ------------- |:------------- |
+|:------------- |:------------- |
 |`├── chef_server_route`|		__A set of machines__ for the `server route`|
 |`│   ├── centos_node`|			A centos node for this lab based on [CentOS 6.4 x86_64][CentOS 6.4 x86_64]|
 |`│   │   ├── Vagrantfile`| 	A [vagrant][vagrant] file which instatiates this machine with VirtualBox provider|

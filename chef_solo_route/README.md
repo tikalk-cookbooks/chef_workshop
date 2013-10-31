@@ -5,7 +5,7 @@
 ###Provided machines via vagrant
 
 | Directory | Purpose |
-|: ------------- |:------------- |
+|:------------- |:------------- |
 |`├── chef_solo_route`|			__A set of machines__ for the `chef-solo route`|
 |`│   ├── centos_node`|			A centos node for this lab based on [CentOS 6.4 x86_64][CentOS 6.4 x86_64] some more stuff for chef-solo|
 |`│   │   ├── Vagrantfile`|		A [vagrant][vagrant] file which instatiates this machine with VirtualBox provider|
