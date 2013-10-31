@@ -1,10 +1,12 @@
 ###Purpose - using chef server
-1. create a chef server
-2. create a centos node
-3. create a ubutnu node
-4. assign a role to the nodes via chef bootstrap
-
-
+<img src="http://www.tikalk.com/files/upload/1/chef_server_oss.jpg" alt="Chef Server OSS" height="120" width="200" hspace="20" align="left"> 1. Create a chef server<br>
+2. Create a centos node<br>
+3. Create a ubutnu node<br>
+4. Assign a role to the nodes via chef bootstrap<br>
+<br>
+__End goal:__ understand the ***workflow*** with a chef server.
+<br>
+<br>
 ###Provided machines via vagrant
 
 
@@ -28,7 +30,7 @@
 
 Bootstrap your chef server:
 
-	cd .chef-server
+	cd chef-server
 	vagrant up
 	vagrant provision
 
@@ -60,19 +62,20 @@ We are noew ready for cooking with chef-server.
 
 Knife is ready we are now ready to bootstrap some nodes in our infrustructure so lets create some first:
 
-1. centos node
+1. ___centos___ node
 	
 	cd .centos_node
 	vagrant up
 	
-	You have a cnetos machine listening on `192.168.56.103` [ see .centos_node/Vagrantfile ]
+	You have a cnetos machine listening on `192.168.56.103` [ see centos_node/Vagrantfile ]
 	
-2. ubutnu node
+2. ___ubutnu___ node
 
 	cd .ubuntu_node
 	vagrant up
 	
-	You have a ubuntu machine listening on `192.168.56.104` [ see .ubuntu_node/Vagrantfile ]
+	You have a ubuntu machine listening on `192.168.56.104` [ see ubuntu_node/Vagrantfile ]
+
 
 So now we have nodes let's provision them …
 
