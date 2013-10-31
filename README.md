@@ -18,7 +18,7 @@ I assume you have git
 ## What lies here ?:
 
 | Directory | Purpose |
-|: ------------- |:------------- |
+|:------------- |:------------- |
 |`├── .chef`|					A chef configuration for the |chef-solo| part for the workshop|
 |`│   └── knife.rb`|			Knife configuration file with some "sane" defaults|
 |`├── .gitignore`|				A set of files / paths we don't on in source control |
