@@ -9,7 +9,7 @@ cat /etc/hosts | grep chef-srv &>/dev/null || echo "192.168.56.101 chef-srv" >> 
 
 
 # we need git :)
-[[ `which git` ]] || apt-get -yqq install git
+[[ `which git` ]] || yum -y install git
 
 # install chef-solo
 `which chef-solo` || curl -L https://www.opscode.com/chef/install.sh | sudo bash
@@ -19,6 +19,9 @@ test -f /etc/profile.d/ruby_n_chef.sh ||  echo 'export PATH=$PATH:/opt/chef/bin:
 chmod 0755 /etc/profile.d/ruby_n_chef.sh
 echo $PATH | grep "chef" || source /etc/profile.d/ruby_n_chef.sh
 
+
 gem install rubygems-update
 update_rubygems
+
+echo "This could take some time depending on your internet connection ..."
 gem install librarian-chef --no-document --no-ri --no-rdoc

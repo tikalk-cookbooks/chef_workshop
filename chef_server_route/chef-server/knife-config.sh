@@ -3,7 +3,7 @@
 [[ -z "$DEBUG" ]] && set -x || set -e
 
 # we need git on the image to set the cookbook path in knife.rb
-[[ `which git` ]] || apt-get install git
+[[ `which git` ]] || apt-get -y install git
 # clone the repo ... [myself :)]
 
 test -d /root/chef_repo || git clone https://github.com/tikalk-cookbooks/chef-intro-repo.git /root/chef_repo
@@ -28,7 +28,10 @@ fmt <<'EOF'
     ** knife-client list ...			**
   
 HINT :: use the following command
-    knife configure --admin-client-name admin --admin-client-key /etc/chef-server/admin.pem -i -r /root/chef_repo/ --validation-client-name chef-validator --validation-key /etc/chef-server/chef-validator.pem
+    knife configure --admin-client-name admin --admin-client-key \
+	/etc/chef-server/admin.pem -i -r /root/chef_repo/ \
+	--validation-client-name chef-validator --validation-key \
+	/etc/chef-server/chef-validator.pem
 
 PLEASE NOTE::
 	This is for educational puposes and normally we will not use root !
@@ -36,7 +39,10 @@ PLEASE NOTE::
 
 Add roles & cookbooks to the server and bootstrap your node.
 
-	Add a role to your server :: knife role from file roles/base.json
+	Add a role to your server :: 
+
+	  knife role from file roles/base.json
+
 	Upload the cookbooks to the server :: 
 
 	  knife cookbook upload ntp 
@@ -45,9 +51,10 @@ Add roles & cookbooks to the server and bootstrap your node.
 	
 	Bootstrap a node:
 	
-	centos node :: knife bootstrap 192.168.56.103 -x opencm -P opencm -r 'role[base]' --sudo
+	centos node :: knife bootstrap 192.168.56.103 -x opencm -P opencm \
+	-r 'role[base]' --sudo
 
-	ubtunu node :: knife bootstrap 192.168.56.104 -x opencm -P opencm -r 'role[base]' --sudo
+	ubtunu node :: knife bootstrap 192.168.56.104 -x opencm -P opencm \	   -r 'role[base]' --sudo
 
 
 ====================================================================================

@@ -23,4 +23,9 @@ cookbook 'newrelic',
         :ref => 'master'
 cookbook 'mysql'
 cookbook 'chef-solo-search'
+
+
+#chef-solo-demo
+cookbook 'nginx'
+cookbook 'iptables'
         
