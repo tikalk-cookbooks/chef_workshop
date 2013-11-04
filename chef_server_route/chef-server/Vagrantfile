@@ -20,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Execute shell + pass arg to the shell script
-  #config.vm.provision :shell, :path => File.expand_path("../bootstrap.sh", __FILE__), :args => "server"
+  config.vm.provision :shell, :path => File.expand_path("../bootstrap.sh", __FILE__), :args => "server"
   config.vm.provision :shell, :path => File.expand_path("../knife-config.sh", __FILE__)
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
