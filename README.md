@@ -58,7 +58,7 @@ I assume you have git
 
 
 [canonical-ubuntu-12.04]: http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box
-[CentOS 6.4 x86_64]: http://shonky.info/centos64.box
+[CentOS 6.4 x86_64]: https://github.com/2creatives/vagrant-centos/releases/download/v0.1.0/centos64-x86_64-20131030.box
 [vagrant]: http://downloads.vagrantup.com/  "Download Vagrant"
 [knife]: http://docs.opscode.com/knife.html "Chef's knife"
 [virtualbox]: https://www.virtualbox.org/wiki/Downloads "Virtual Box"

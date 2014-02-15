@@ -5,11 +5,12 @@
 VAGRANTFILE_API_VERSION = "2"
 BASE_DIR = File.dirname(__FILE__)
 NAME = "chef-solo-demo"
+CENTOS65_URL = "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "CentOS 6.4 x86_64"
-  config.vm.box_url = "http://shonky.info/centos64.box"
+  config.vm.box_url = CENTOS65_URL
   config.vm.network "private_network", ip: "192.168.56.80"
   #config.vm.network "public_network"
   config.vm.hostname = "#{NAME}"
