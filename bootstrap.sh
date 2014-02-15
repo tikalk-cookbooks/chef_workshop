@@ -18,7 +18,7 @@ echo $PATH | grep "chef" || source /etc/profile.d/ruby_n_chef.sh
 gem install rubygems-update
 update_rubygems
 
-which bundle &>/dev/null || { gem insmtall bundler; } && { bundle install; }
+which bundle &>/dev/null || gem install bundler; &&  bundle install;
 
 # generate pem file for user
 test -f .chef/$USER.pem || ssh-keygen -f .chef/$USER.pem
