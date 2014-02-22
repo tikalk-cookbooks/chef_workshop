@@ -1,0 +1,7 @@
+# nginx virtual host template configured by chef on <%= node[:fqdn] %>
+
+server {
+  listen <%= node[:nginx][:port] %> default;
+  server_name <%= node[:fqdn] %>;
+  root <%= node[:nginx][:vhost][:demo] %>;
+}

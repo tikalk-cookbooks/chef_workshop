@@ -1,0 +1,30 @@
+SITE
+  remote: http://community.opscode.com/api/v1
+  specs:
+    apt (2.3.8)
+    bluepill (2.3.1)
+      rsyslog (>= 0.0.0)
+    build-essential (1.4.2)
+    iptables (0.12.0)
+    nginx (2.2.2)
+      apt (~> 2.2)
+      bluepill (~> 2.3)
+      build-essential (~> 1.4)
+      ohai (~> 1.1)
+      runit (~> 1.2)
+      yum (~> 3.0)
+      yum-epel (>= 0.0.0)
+    ohai (1.1.12)
+    rsyslog (1.11.0)
+    runit (1.5.8)
+      build-essential (>= 0.0.0)
+      yum (~> 3.0)
+      yum-epel (>= 0.0.0)
+    yum (3.1.0)
+    yum-epel (0.3.4)
+      yum (~> 3.0)
+
+DEPENDENCIES
+  iptables (>= 0)
+  nginx (>= 0)
+
