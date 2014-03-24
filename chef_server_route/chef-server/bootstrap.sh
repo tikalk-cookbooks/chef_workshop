@@ -14,7 +14,9 @@ if [ "$1" = "server" ]; then
 	mkdir -p /var/chef/cache /var/chef/cookbooks/chef-server
 
 	# pull down this chef-server cookbook
-	wget -qO- https://github.com/opscode-cookbooks/chef-server/archive/master.tar.gz | tar xvzC /var/chef/cookbooks/chef-server --strip-components=1
+	# wget -qO- https://github.com/opscode-cookbooks/chef-server/archive/master.tar.gz | tar xvzC /var/chef/cookbooks/chef-server --strip-components=1
+	# master has now changes and requires berkshlf to be installed - I don't want that complication at this stage ...
+	wget -qO- https://github.com/opscode-cookbooks/chef-server/archive/2.0.0.tar.gz | tar xvzC /var/chef/cookbooks/chef-server --strip-components=1
 
 	# install chef server with chef solo
 	chef-solo -o 'recipe[chef-server::default]'
