@@ -1,14 +1,14 @@
 #!/bin/bash
 
-[[ -z "$DEBUG" ]] && set -x || set -e
+[[ -z "$DEBUG" ]] && set -x #|| set -e
 
 # we need git on the image to set the cookbook path in knife.rb
 [[ `which git` ]] || apt-get -y install git
 # clone the repo ... [myself :)]
 
-test -d /root/chef_repo || git clone https://github.com/tikalk-cookbooks/chef-intro-repo.git /root/chef_repo
+[[ -d /root/chef_repo ]] || git clone https://github.com/tikalk-cookbooks/chef-intro-repo.git /root/chef_repo
 cd /etc/bash_completion.d/ 
-test -f knife.sh || wget https://gist.github.com/raw/1050685/23624fff40694d5ed5f55089774d13b1937bb37f/knife.sh
+[[ -f knife.sh ]] || wget https://gist.github.com/raw/1050685/23624fff40694d5ed5f55089774d13b1937bb37f/knife.sh
 
 
 fmt <<'EOF'
@@ -19,7 +19,7 @@ fmt <<'EOF'
 
   - Connect now with "vagrant ssh" become root with sudo -i
 
-  - Provide knife witht the desired username/pass - the chef-server will generate it for you !
+  - Provide knife with the desired username/pass - the chef-server will generate it for you !
 
   - Provide knife the cookbook_path of "/root/chef_repo/cookbooks"
 
